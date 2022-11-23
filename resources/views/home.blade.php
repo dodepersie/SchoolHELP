@@ -23,7 +23,7 @@
                                 @elseif(Auth::user()->role_user == 'volunteer')
                                 {{ route('dashboard_volunteer') }}
                                 @endif">
-                        <span class="text-primary"> Go to Dashboard </span>
+                        <span class="text-primary"> Go to Dashboard! </span>
                     </a>
                     @endauth
                 </div>
