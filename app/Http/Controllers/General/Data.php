@@ -9,20 +9,20 @@ use Illuminate\Support\Facades\Route;
 
 class Data extends Controller
 {
-  public function data($breadcrumb, $request = '') {
+  public static function data($breadcrumb, $request = '') {
     $data['breadcrumb'] = Data::breadcrumb($breadcrumb);
     $data['sidenav'] = Data::sidenav($request);
     return $data;
   }
 
-  public function breadcrumb($breadcrumb) {
+  public static function breadcrumb($breadcrumb) {
     $data = [
       'breadcrumb' => $breadcrumb
     ];
     return view('layouts/breadcrumb', $data);
   }
 
-  public function sidenav($request) {
+  public static function sidenav($request) {
     $role_user = Auth::user()->role_user;
     $sidenav = [];
 
