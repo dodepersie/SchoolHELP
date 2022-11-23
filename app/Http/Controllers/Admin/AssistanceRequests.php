@@ -95,6 +95,58 @@ class AssistanceRequests extends Controller
     }
   }
 
+  public function edit_request($id_request) {
+    $id_request = Crypt::decrypt($id_request);
+    $data = [
+      'edit' => mRequest::find($id_request),
+    ];
+    return view('admin/request/edit', $data);
+  }
+
+  public function update_request(Request $request, $id_request) {
+    // data rules
+    if ($request['request_type'] == 'tutorial') {
+      $rules = [
+        'proposed_datetime' => 'bail|required|date|date_format:Y-m-d\TH:i:s',
+        'student_level' => 'bail|required|string|max:255',
+        'no_of_student' => 'bail|required|integer|min:1',
+      ];
+    } else if ($request['request_type'] == 'resource') {
+      $rules = [
+        'resource_type' => 'bail|required|string|max:255',
+        'no_of_resource' => 'bail|required|string|max:255',
+      ];
+    } else {
+      return abort(404);
+    }
+    $rules['description'] = 'bail|required|string';
+    $data_validation = Validator::make($request->all(), $rules);
+
+    if ($data_validation->fails()) {
+      return response()->json($data_validation->errors());
+    } else {
+      $id_request = Crypt::decrypt($id_request);
+      $request_data = mRequest::find($id_request);
+      if ($request_data->req_type == 'tutorial') {
+        $data_new_request = [
+          'req_proposed_datetime' => $request['proposed_datetime'],
+          'req_student_level' => $request['student_level'],
+          'req_no_of_student' => $request['no_of_student'],
+        ];
+      } else if ($request_data->req_type == 'resource') {
+        $data_new_request = [
+          'req_resource_type' => $request['resource_type'],
+          'req_no_of_resource' => $request['no_of_resource'],
+        ];
+      } else {
+        return abort(404);
+      }
+      $data_new_request['req_description'] = $request['description'];
+
+      $request_data->update($data_new_request);
+    }
+  }
+
   public function close($id_request) {
     $id_request = Crypt::decrypt($id_request);
     mRequest::find($id_request)->update(['req_status' => 'closed']);
@@ -102,6 +154,34 @@ class AssistanceRequests extends Controller
      * Kurang email notification
      */
     return redirect()->back();
+  }
+
+  public function detail($id_request) {
+    $id_request = Crypt::decrypt($id_request);
+    $assistance_request = mRequest::find($id_request);
+    $list_offers = Offer::where([['id_request',$id_request],])
+    ->get([
+      'id_offer',
+      'id_request',
+      'id_user',
+      'ofr_remarks',
+      'ofr_status',
+      'created_at',
+    ]);
+
+    // breadcrumb
+    $this->breadcrumb = array_merge($this->breadcrumb, [
+      [
+        'name' => 'Detail',
+        'route' => route('request_detail', ['id_request' => Crypt::encrypt($id_request)])
+      ],
+    ]);
+
+    $data = array_merge(Data::data($this->breadcrumb), [
+      'assistance_request' => $assistance_request,
+      'list_offers' => $list_offers,
+    ]);
+    return view('admin/request/detail', $data);
   }
 
   public function detail_offer($id_offer) {
