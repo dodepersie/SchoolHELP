@@ -58,7 +58,7 @@
                       @endif">
               <span class="d-flex align-items-center">
                   <i class="bi bi-arrow-right me-2"></i>
-                  <span class="small">Go Back</span>
+                  <span class="small">Dashboard</span>
               </span>
             </a>
           @else
