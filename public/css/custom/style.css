@@ -1,0 +1,36 @@
+/* ===== Login background ===== */
+.page-header {
+    background-image: url(../../img/bg-edu.jpg);
+    background-position: center;
+}
+
+/* ===== Dropdown ===== */
+:not(.main-content) .navbar .dropdown .dropdown-menu.show{
+  top: 0!important;
+}
+
+/* ===== DataTables ===== */
+.table> :not(:last-child)> :last-child>* {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.table> :not(caption)>*>* {
+  border-bottom-color: #e9ecef;
+}
+.dataTables_info, .dataTables_paginate {
+  padding-top: 1rem!important;
+  font-size: 0.75rem !important;
+}
+.paginate_button {
+  border-radius: 5px !important;
+  padding: 0.3em 0.8em !important;
+}
+span > a.paginate_button {
+  border-radius: 50% !important;
+}
+
+/* ===== Sidenav bg white ===== */
+@media screen and (min-device-width: 1200px){
+  #sidenav-main {
+    background-color: #fff!important;
+  }
+}
