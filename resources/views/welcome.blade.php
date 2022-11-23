@@ -231,10 +231,29 @@
           <br />
           Start giving.
         </h2>
+        @if (Route::has('login'))
+        @auth
+          <a class="btn btn-outline-light py-3 px-4 rounded-pill"
+             href="
+                    @if(Auth::user()->role_user == 'super_admin')
+                      {{ route('dashboard_super_admin') }}
+                    @elseif(Auth::user()->role_user == 'admin')
+                      {{ route('dashboard_admin') }}
+                    @elseif(Auth::user()->role_user == 'volunteer')
+                      {{ route('dashboard_volunteer') }}
+                    @endif">
+            <span class="d-flex align-items-center">
+                <i class="bi bi-arrow-right me-2"></i>
+                <span class="small">Dashboard</span>
+            </span>
+          </a>
+        @else
         <a class="btn btn-outline-light py-3 px-4 rounded-pill" href="{{ route('register_volunteer') }}">
           <i class="bi bi-person-plus-fill me-1 fs-5"></i>
           Register
         </a>
+        @endauth
+      @endif
       </div>
     </div>
   </section>
