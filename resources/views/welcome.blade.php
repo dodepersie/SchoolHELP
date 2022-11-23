@@ -24,6 +24,8 @@
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{ asset('landingPageAssets/css/styles.css') }}" rel="stylesheet" />
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   </head>
   <body id="page-top" class="antialiased">
@@ -43,7 +45,6 @@
           <li class="nav-item"><a class="nav-link me-lg-3" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link me-lg-3" href="#features">Features</a></li>
           <li class="nav-item"><a class="nav-link me-lg-3" href="#about">About Us</a></li>
-          <li class="nav-item"><a class="nav-link me-lg-3" href="#get-in-touch">Get in Touch!</a></li>
         </ul>
         @if (Route::has('login'))
           @auth
@@ -85,16 +86,19 @@
   <header class="masthead" id="home">
     <div class="container px-5">
       <div class="row gx-5 align-items-center">
-        <div class="col-lg-6">
+        <div class="col-lg-6" data-aos="fade-right" data-aos-duration="500">
           <!-- Mashead text and app badges-->
           <div class="mb-lg-0 text-center text-lg-start">
             <h1 class="display-1 lh-1 mb-3">Provide More Educate More.</h1>
             <p class="lead fw-normal text-muted">Let's help thousands of children get the knowledge and resources they need, to help their learning process!</p>
+            <a class="btn btn-primary py-3 px-4 rounded-pill" href="#features">
+              Learn More
+            </a>
             <div class="d-flex flex-column flex-lg-row align-items-center">
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6" data-aos="fade-left" data-aos-duration="500">
           <!-- Masthead device mockup feature-->
           <div class="masthead-device-mockup">
             <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -142,7 +146,7 @@
         <div class="col-lg-8 order-lg-1 mb-5 mb-lg-0">
           <div class="container-fluid px-5">
             <div class="row gx-5">
-              <div class="col-md-6 mb-5">
+              <div class="col-md-6 mb-5" data-aos="zoom-in-right" data-aos-duration="500">
                 <!-- Feature item-->
                 <div class="text-center">
                   <i class="fas fa-school icon-feature text-gradient d-block mb-3"></i>
@@ -150,7 +154,7 @@
                   <p class="text-muted mb-0">Schools can register and have lots of requests and offers!</p>
                 </div>
               </div>
-              <div class="col-md-6 mb-5">
+              <div class="col-md-6 mb-5" data-aos="zoom-in-left" data-aos-duration="500">
                 <!-- Feature item-->
                 <div class="text-center">
                   <i class="fa fa-file-text-o icon-feature text-gradient d-block mb-3"></i>
@@ -159,7 +163,7 @@
                 </div>
               </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" data-aos="zoom-in-down" data-aos-duration="500">
               <div class="col-md-6 mb-5 mb-md-0">
                 <!-- Feature item-->
                 <div class="text-center">
@@ -204,7 +208,7 @@
   <section class="bg-light" id="about">
     <div class="container px-5">
       <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-5" data-aos="fade-right" data-aos-duration="500">
           <h2 class="display-4 lh-1 mb-4">Help the education of many people</h2>
           <p class="lead fw-normal text-muted mb-5 mb-lg-0">
             SchoolHELP is a system that has been proposed to allow schools to request for help from the general public.
@@ -223,9 +227,9 @@
     </div>
   </section>
   <!-- Call to action section-->
-  <section class="cta">
+  <section class="cta" id="cta">
     <div class="cta-content">
-      <div class="container px-5">
+      <div class="container px-5" data-aos="fade-right" data-aos-duration="500">
         <h2 class="text-white display-1 lh-1 mb-4">
           Stop scrolling.
           <br />
@@ -296,5 +300,7 @@
   <!-- Core theme JS-->
   <script src="{{ asset('landingPageAssets/js/scripts.js') }}"></script>
   <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
   </body>
 </html>
