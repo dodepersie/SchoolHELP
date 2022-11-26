@@ -76,7 +76,8 @@ class AssistanceRequests extends Controller
 
   }
 
-//  public function delete_offer(Request $request, $id_offer) {
-//		isi
-//  }
+  public function delete_offer(Request $request, $id_offer) {
+    $id_offer = Crypt::decrypt($id_offer);
+    Offer::find($id_offer)->delete();
+  }
 }
