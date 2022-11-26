@@ -9,5 +9,5 @@ SchoolHELP is a system that has been proposed to allow schools to request for he
 ## Team members
 
 - I Dewa Gede Mahadi Saputra [E1900338] / Team Leader / Github: [@dodepersie](https://github.com/dodepersie)
-- Dicky Trismanto [E1900333] / Team Member / Github: [@DickyTrismanto1](https://github.com/DickyTrismanto1)
-- Putu Ananta Rizky Pratama [E1900352] / Team Member / Github: [@anantarizky89](https://github.com/anantapratama8899)
+- Dicky Trismanto [E1900333] / Team Member / Github: [@dickytrismanto](https://github.com/dickytrismanto)
+- Putu Ananta Rizky Pratama [E1900352] / Team Member / Github: [@anantapratama8899](https://github.com/anantapratama8899)
