@@ -37,13 +37,29 @@ class AssistanceRequests extends Controller
     return view('volunteer/assistanceRequests/list', $data);
   }
 
-//  public function create_offer($id_request) {
-//		isi
-//  }
+  public function create_offer($id_request) {
+    $data = ['id_request' => $id_request];
+    return view('volunteer/assistanceRequests/submitOffer', $data);
+  }
 
-//  public function store_offer(Request $request, $id_request) {
-//		isi
-//  }
+  public function store_offer(Request $request, $id_request) {
+    $data_validation = Validator::make($request->all(), [
+      'remarks' => ['required', 'string'],
+    ]);
+
+    // validate the input and return errors using
+    // json response with status 200
+    if ($data_validation->fails()) {
+      return response()->json($data_validation->errors());
+    } else {
+      $data_new_offer = [
+        'id_request' => Crypt::decrypt($id_request),
+        'id_user' => Auth::user()->id_user,
+        'ofr_remarks' => $request['remarks'],
+      ];
+      Offer::create($data_new_offer);
+    }
+  }
 
   public function detail_request($id_request) {
     $id_request = Crypt::decrypt($id_request);
