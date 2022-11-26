@@ -191,4 +191,21 @@ class AssistanceRequests extends Controller
     ];
     return view('admin/request/detailOffer', $data);
   }
+
+  public function accept_offer($id_offer) {
+    $id_offer = Crypt::decrypt($id_offer);
+    $offer = Offer::find($id_offer);
+    $offer->update(['ofr_status' => 'accepted']);
+    // Notification
+    $volunteer = $offer->user;
+    $admin = Auth::user();
+    $message = [
+      'id' => $offer->id_offer,
+      'date' => $offer->created_at,
+      'remarks' => $offer->ofr_remarks,
+    ];
+    Mail::to($volunteer->email)->send(new InformationEmail($message));
+    Mail::to($admin->email)->send(new InformationEmail($message));
+    return redirect()->back();
+  }
 }
